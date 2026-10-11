@@ -74,7 +74,7 @@ export default function SignInForm({ permissionDenied = false, configurationMiss
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             className={styles.input}
-            placeholder="osa.admin@nutech.edu.pk"
+            placeholder="@nutech.edu.pk"
             required
           />
         </div>
@@ -90,7 +90,7 @@ export default function SignInForm({ permissionDenied = false, configurationMiss
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             className={styles.input}
-            placeholder="••••••••"
+            placeholder=""
             required
           />
         </div>
