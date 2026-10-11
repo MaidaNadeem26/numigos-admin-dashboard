@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Instrument Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-brand: #1e5d4b;
+  --color-brand-strong: #123e34;
+  --color-brand-deep: #0b3029;
+  --color-brand-soft: #2f7a63;
+  --color-brand-mist: #e0efe9;
+  --color-canvas: #f4f8f6;
+  --color-surface: #ffffff;
+  --color-field: #f6f8f7;
+  --color-ink: #12251f;
+  --color-ink-muted: #687872;
+  --color-line: #dbe4e0;
+  --color-error: #ba3f50;
+  --color-error-soft: #fff0f2;
+  --color-warning: #9a563e;
+  --color-warning-soft: #fbede7;
+  --color-accent-gold: #f2cc8f;
+  --color-accent-ink: #61451d;
+  --color-success: #267456;
+  --color-success-soft: #e5f5ec;
+  --color-event-coral: #f08b67;
+  --color-event-gold: #f5c76f;
+  --color-event-sage: #82ac9d;
+  --color-home-chip: #f5f3ee;
+  --color-night: #14233d;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f4f8f6;
+  color: #12251f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  border-radius: 28px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c6d4ce;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-track {
+  background: #edf3f0;
+}
+
+input,
+select,
+textarea {
+  background: #f6f8f7;
+  border: 1px solid #dbe4e0;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(30, 93, 75, 0.12);
+  outline-offset: 1px;
+}
+
+.osa-field {
+  border-radius: 28px;
+  background: #f6f8f7;
+  border: 1px solid #dbe4e0;
+}
+
+.osa-field:focus {
+  border-color: #1e5d4b;
+  outline: 3px solid rgba(30, 93, 75, 0.12);
+}
+
+.osa-button {
+  border-radius: 28px;
+}
+
+.osa-primary-button {
+  background: #1e5d4b;
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(30, 93, 75, 0.25);
+}
+
+.osa-status-badge {
+  border-radius: 16px;
+}
+
+/* Dark-green surfaces: keep text and icons readable (white) on them. */
+.bg-brand-soft,
+.bg-brand-soft * {
+  color: #ffffff !important;
+}
+
+/* Table header row: deep green with white labels. */
+table thead,
+table thead th {
+  background: #0b3029;
+  color: #ffffff !important;
+}
+
+/* Row hover: soft mist so dark text stays readable. */
+table tbody tr:hover {
+  background: #e0efe9;
+}
+
+@keyframes osa-shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: -100% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(100deg, #e0efe9 30%, #ffffff 50%, #c9e0d7 70%);
+  background-size: 220% 100%;
+  animation: osa-shimmer 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer {
+    animation: none;
+    background: #e0efe9;
+  }
+}
