@@ -98,11 +98,11 @@ export function SummaryHero({
             {reviewCount === null ? 'Review queue status is unavailable.' : `${reviewCount} ${reviewCount === 1 ? 'item' : 'items'} awaiting your review`}
           </p>
         </div>
-        <div className="flex flex-wrap gap-3">
-          <Link href="/overview?tab=review-queue" className="osa-button inline-flex items-center gap-2 bg-white px-5 py-3 text-sm font-semibold text-brand-deep transition hover:bg-brand-mist">
+        <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3 w-full lg:w-auto">
+          <Link href="/overview?tab=review-queue" className="osa-button w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white px-5 py-3 text-sm font-semibold text-brand-deep transition hover:bg-brand-mist">
             Review queue <ArrowRight className="h-4 w-4" />
           </Link>
-          <Link href="/events?tab=approvals" className="osa-button inline-flex items-center gap-2 border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/20">
+          <Link href="/events?tab=approvals" className="osa-button w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/20">
             Event approvals <CalendarDays className="h-4 w-4" />
           </Link>
         </div>

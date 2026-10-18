@@ -124,19 +124,19 @@ function OverviewTabs({ activeTab, children }: { activeTab: string; children: Re
           </Link>
         ))}
       </nav>
-      <div className="rounded-2xl border border-line bg-surface p-6">{children}</div>
+      <div className="min-w-0 rounded-2xl border border-line bg-surface p-4 sm:p-6">{children}</div>
     </div>
   );
 }
 
 function ReviewQueue({ societies, events, societyError, eventError }: { societies: SocietyOverviewRow[]; events: EventOverviewRow[]; societyError: string | null; eventError: string | null }) {
   return (
-    <div className="grid gap-5 xl:grid-cols-2">
-      <section className="rounded-2xl border border-line bg-surface p-5">
+    <div className="grid gap-5 xl:grid-cols-2 min-w-0">
+      <section className="min-w-0 rounded-2xl border border-line bg-surface p-4 sm:p-5">
         <div className="mb-4 flex items-center justify-between gap-3"><h3 className="font-semibold text-ink">Societies awaiting review</h3><Link href="/societies?tab=approvals" className="text-sm font-medium text-brand hover:text-brand-strong">Approvals tab</Link></div>
         {societyError ? <ErrorState title="Society review queue unavailable" description={societyError} /> : societies.length === 0 ? <EmptyState title="No societies awaiting review" description="No society status matches any society rule's from_statuses." /> : <ul className="divide-y divide-line">{societies.map((society) => <li key={society.id} className="space-y-3 py-4 first:pt-0 last:pb-0"><div className="flex flex-wrap items-start justify-between gap-3"><div><p className="font-medium text-ink">{society.name}</p><p className="mt-1 text-xs text-ink-muted">Created {displayDate(society.created_at)} · {society.category}</p></div><StatusBadge label={society.status} /></div><ReviewDecisionActions entityType="society" entityId={society.id} /></li>)}</ul>}
       </section>
-      <section className="rounded-2xl border border-line bg-surface p-5">
+      <section className="min-w-0 rounded-2xl border border-line bg-surface p-4 sm:p-5">
         <div className="mb-4 flex items-center justify-between gap-3"><h3 className="font-semibold text-ink">Events awaiting review</h3><Link href="/events?tab=approvals" className="text-sm font-medium text-brand hover:text-brand-strong">Approvals tab</Link></div>
         {eventError ? <ErrorState title="Event review queue unavailable" description={eventError} /> : events.length === 0 ? <EmptyState title="No events awaiting review" description="No events currently have Pending Approval status." /> : <ul className="divide-y divide-line">{events.map((event) => <li key={event.id} className="space-y-3 py-4 first:pt-0 last:pb-0"><div className="flex flex-wrap items-start justify-between gap-3"><div><p className="font-medium text-ink">{event.title}</p><p className="mt-1 text-xs text-ink-muted">{event.society_name} · Created {displayDate(event.created_at)}</p><p className="mt-1 text-xs text-ink-muted">{displayDate(event.date)} · {event.venue}</p></div><StatusBadge label={event.status} /></div><ReviewDecisionActions entityType="event" entityId={event.id} /></li>)}</ul>}
       </section>
@@ -146,15 +146,15 @@ function ReviewQueue({ societies, events, societyError, eventError }: { societie
 
 function ActivityLog({ decisions, admins, error, migrationMissing, filters }: { decisions: AdminDecisionRow[]; admins: Array<{ id: string; label: string }>; error: string | null; migrationMissing: boolean; filters: { search: string; type: string; action: string; admin: string; from: string; to: string } }) {
   return (
-    <section className="rounded-2xl border border-line bg-surface p-5">
+    <section className="min-w-0 rounded-2xl border border-line bg-surface p-4 sm:p-5">
       <form action="/overview" method="get" className="mb-5 grid gap-3 md:grid-cols-2 xl:grid-cols-6">
         <input type="hidden" name="tab" value="activity-log" />
         <label className="grid gap-1 text-xs font-medium text-ink-muted xl:col-span-2">Search<input name="search" defaultValue={filters.search} placeholder="Notes or entity ID" className="osa-field min-w-0 px-4 py-2 text-sm text-ink outline-none" /></label>
         <label className="grid gap-1 text-xs font-medium text-ink-muted">Type<select name="type" defaultValue={filters.type} className="osa-field min-w-0 px-4 py-2 text-sm text-ink outline-none"><option value="">All types</option><option value="society">Society</option><option value="event">Event</option></select></label>
         <label className="grid gap-1 text-xs font-medium text-ink-muted">Decision<select name="action" defaultValue={filters.action} className="osa-field min-w-0 px-4 py-2 text-sm text-ink outline-none"><option value="">All decisions</option><option value="approve">Approve</option><option value="reject">Reject</option><option value="request_changes">Request changes</option></select></label>
         <label className="grid gap-1 text-xs font-medium text-ink-muted">Admin<select name="admin" defaultValue={filters.admin} className="osa-field min-w-0 px-4 py-2 text-sm text-ink outline-none"><option value="">All admins</option>{admins.map((admin) => <option key={admin.id} value={admin.id}>{admin.label}</option>)}</select></label>
-        <div className="grid grid-cols-2 gap-3 md:col-span-2 xl:col-span-3"><label className="grid gap-1 text-xs font-medium text-ink-muted">From<input type="date" name="from" defaultValue={filters.from} className="osa-field min-w-0 px-4 py-2 text-sm text-ink outline-none" /></label><label className="grid gap-1 text-xs font-medium text-ink-muted">To<input type="date" name="to" defaultValue={filters.to} className="osa-field min-w-0 px-4 py-2 text-sm text-ink outline-none" /></label></div>
-        <div className="flex items-end gap-2 md:col-span-2 xl:col-span-3"><button className="osa-button bg-brand px-5 py-2 text-sm font-semibold text-white shadow-[0_5px_12px_rgba(30,93,75,0.16)] hover:bg-brand-strong">Apply filters</button><Link href="/overview?tab=activity-log" className="osa-button border border-line bg-surface px-5 py-2 text-center text-sm font-medium text-ink">Clear</Link></div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:col-span-2 xl:col-span-3"><label className="grid gap-1 text-xs font-medium text-ink-muted">From<input type="date" name="from" defaultValue={filters.from} className="osa-field min-w-0 px-4 py-2 text-sm text-ink outline-none" /></label><label className="grid gap-1 text-xs font-medium text-ink-muted">To<input type="date" name="to" defaultValue={filters.to} className="osa-field min-w-0 px-4 py-2 text-sm text-ink outline-none" /></label></div>
+        <div className="flex flex-wrap items-end gap-2 md:col-span-2 xl:col-span-3"><button className="osa-button w-full sm:w-auto bg-brand px-5 py-2 text-sm font-semibold text-white shadow-[0_5px_12px_rgba(30,93,75,0.16)] hover:bg-brand-strong">Apply filters</button><Link href="/overview?tab=activity-log" className="osa-button w-full sm:w-auto border border-line bg-surface px-5 py-2 text-center text-sm font-medium text-ink">Clear</Link></div>
       </form>
       {migrationMissing ? <AuditMigrationState /> : error ? <ErrorState title="Activity log unavailable" description={error} /> : decisions.length === 0 ? <EmptyState title="No decisions match these filters" description="Try a broader date range or clear one of the filters." /> : (
         <ol className="divide-y divide-line">{decisions.map((decision) => { const admin = admins.find((item) => item.id === decision.actor_id)?.label ?? decision.actor_id; return <li key={decision.id} className="grid gap-2 py-4 first:pt-0 md:grid-cols-[1fr_auto] md:items-start"><div><div className="flex flex-wrap items-center gap-2"><p className="font-medium capitalize text-ink">{decision.entity_type} · {decision.action.replace('_', ' ')}</p><StatusBadge label={decision.new_status} /></div><p className="mt-1 text-sm text-ink-muted">ID: {decision.entity_id} · {admin}</p>{decision.notes ? <p className="mt-2 text-sm text-ink">{decision.notes}</p> : null}</div><time className="text-xs text-ink-muted" dateTime={decision.created_at}>{new Intl.DateTimeFormat('en', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(decision.created_at))}</time></li>; })}</ol>

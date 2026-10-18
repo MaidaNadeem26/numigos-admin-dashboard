@@ -28,12 +28,12 @@ const tooltipStyle = { borderColor: gridColor, borderRadius: 14, backgroundColor
 
 function ChartFrame({ title, subtitle, children }: { title: string; subtitle: string; children: React.ReactNode }) {
   return (
-    <section className="flex min-h-[360px] flex-col rounded-[22px] border border-line bg-surface p-5 shadow-[0_7px_24px_rgba(11,48,41,0.055)] sm:p-6">
+    <section className="flex min-h-[340px] min-w-0 flex-col rounded-[22px] border border-line bg-surface p-4 sm:p-6 shadow-[0_7px_24px_rgba(11,48,41,0.055)]">
       <div className="mb-4">
         <h3 className="text-base font-semibold text-ink">{title}</h3>
         <p className="mt-1 text-xs text-ink-muted">{subtitle}</p>
       </div>
-      {children}
+      <div className="flex-1 min-w-0 w-full flex flex-col justify-center">{children}</div>
     </section>
   );
 }
@@ -67,7 +67,7 @@ export function OverviewCharts({
 }) {
   const registrationTotal = registrationsByStatus.reduce((total, point) => total + point.value, 0);
   return (
-    <div className="grid gap-4 xl:grid-cols-2">
+    <div className="grid gap-4 xl:grid-cols-2 min-w-0">
       <ChartFrame title="Events by status" subtitle="Distribution across the current event lifecycle">
         {errors.events ? <ChartError message={errors.events} /> : eventsByStatus.length === 0 ? <ChartEmpty title="Event status totals" icon={ClipboardList} /> : (
           <div className="h-[260px] w-full flex-1">

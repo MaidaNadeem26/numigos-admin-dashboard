@@ -16,9 +16,9 @@ type DataTableProps<T extends Record<string, unknown>> = {
 
 export function DataTable<T extends Record<string, unknown>>({ columns, rows, rowHref, rowLabel }: DataTableProps<T>) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-line bg-surface">
-      <div className="overflow-x-auto">
-        <table className="min-w-full text-left text-sm text-ink">
+    <div className="w-full min-w-0 overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_5px_20px_rgba(11,48,41,0.04)]">
+      <div className="w-full overflow-x-auto overscroll-x-contain">
+        <table className="min-w-full text-left text-sm text-ink whitespace-nowrap">
           <thead className="bg-field text-xs uppercase tracking-[0.08em] text-ink-muted">
             <tr>
               {columns.map((column) => (
